@@ -15,8 +15,6 @@ export class Controller {
       data,
       message,
       success: true,
-      errorCode: null,
-      errors: [],
     });
   }
 
@@ -34,8 +32,6 @@ export class Controller {
       errorCode,
       errors,
       success: false,
-      message: null,
-      data: null,
     });
   }
 
@@ -52,8 +48,6 @@ export class Controller {
       errorCode,
       errors,
       success: false,
-      message: null,
-      data: null,
     });
   }
 }

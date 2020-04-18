@@ -1,13 +1,14 @@
 export interface IRegister {
   name: string;
-  password: string;
+  phone: string;
   email: string;
+  numberId: string;
+  address?: string;
+  password: string;
 }
 
-export interface IGetUser {
-  search: string;
-  after: number;
-  first: number;
+export interface IUser {
+  id: string;
 }
 
 export interface ILogin {

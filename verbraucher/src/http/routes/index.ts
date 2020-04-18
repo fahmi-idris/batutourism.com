@@ -1,42 +1,10 @@
-import * as fastify from 'fastify';
-import * as jwt from 'jsonwebtoken';
+import { UserController } from '../../controllers/user/usersController';
+import { FastifyInstance } from 'fastify';
+import { Server, IncomingMessage, ServerResponse } from 'http';
 
-import { KEY } from '../../config/config';
-import userMethods from '../../controllers/user/usersController';
-
-const server = fastify();
-
-server.get('/', (req, res) => {
-  res.send('Welcome to the Typescript Boilerplate');
-});
-
-server.post('/api/register', async (req, res) => {
-  const { body } = req;
-  const token = await userMethods.addUser({ ...body });
-
-  res.send({
-    token,
-  });
-});
-
-server.post('/api/login', async (req, res) => {
-  const { body } = req;
-  const token = await userMethods.login({ ...body });
-
-  res.send({
-    token,
-  });
-});
-
-server.get('/api/me', async (req, res) => {
-  const { headers } = req;
-  const { authorization } = headers;
-
-  const token: any = jwt.verify(authorization.substring(4), KEY);
-
-  const user = await userMethods.user(token.id);
-
-  res.send(user);
-});
-
-export default server;
+const userController: UserController = new UserController();
+export const router = (server: FastifyInstance<Server, IncomingMessage, ServerResponse>) => {
+  server.post('/api/login', userController.login);
+  server.post('/api/register', userController.register);
+  server.get('/api/user', userController.getUser);
+};
