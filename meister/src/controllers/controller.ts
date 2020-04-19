@@ -9,7 +9,7 @@ export class Controller {
    * @param message string
    * @param data object
    */
-  successResponse(response: FastifyReply<ServerResponse>, message: string, data: object) {
+  successResponse(response: FastifyReply<ServerResponse>, message: string, data?: object) {
     response.status(200);
     return response.send({
       data,

@@ -1,48 +1,53 @@
 import * as mongoose from 'mongoose';
 
-export interface UserType extends mongoose.Document {
+export interface HotelType extends mongoose.Document {
   _id: string;
+  userId: string;
   name: string;
-  phone: string;
-  email: string;
-  numberId: string;
-  address?: string;
-  password: string;
-  active: boolean;
-  authenticate: (plainPassword: string) => boolean;
-  encryptPassword: (password: string) => string;
+  address: string;
+  type: 'Private' | 'Room';
+  district: string;
+  guest: number;
+  category: 'Hotel' | 'Villa';
+  isActive: boolean;
 }
 
 const schema = new mongoose.Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+      index: true,
+    },
     name: {
-      type: String,
-      required: true,
-      index: true,
-    },
-    phone: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      index: true,
-    },
-    numberId: {
       type: String,
       required: true,
       index: true,
     },
     address: {
       type: String,
+      required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+      index: true,
+    },
+    district: {
+      type: String,
+      required: true,
+      index: true,
+    },
+    guest: {
+      type: Number,
       required: false,
     },
-    password: {
+    category: {
       type: String,
-      select: false,
+      required: true,
+      index: true,
     },
-    active: {
+    isActive: {
       type: Boolean,
       default: true,
     },
@@ -52,8 +57,8 @@ const schema = new mongoose.Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-    collection: 'user',
+    collection: 'hotel',
   },
 );
 
-export default mongoose.model<UserType>('User', schema);
+export default mongoose.model<HotelType>('Hotel', schema);

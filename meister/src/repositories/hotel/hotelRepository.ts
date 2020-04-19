@@ -1,4 +1,4 @@
-import userModel from '../../models/user/usersModel';
+import userModel from '../../models/hotel/hotelModels';
 
 export class UserRepository {
   index() {

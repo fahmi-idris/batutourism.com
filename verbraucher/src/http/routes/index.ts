@@ -1,4 +1,4 @@
-import { UserController } from '../../controllers/user/usersController';
+import { UserController } from '../../controllers/user/userController';
 import { FastifyInstance } from 'fastify';
 import { Server, IncomingMessage, ServerResponse } from 'http';
 

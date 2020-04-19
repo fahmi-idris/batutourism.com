@@ -15,10 +15,10 @@ db.databaseURI = process.env.DB_URI;
 db.connect();
 router(server);
 
-server.listen(3001, (err) => {
+server.listen(3002, (err) => {
   if (err) {
     console.log('❌ Error: ', err);
     process.exit(1);
   }
-  console.log('Server Started on port - 3001');
+  console.log('Server Started on port - 3002');
 });

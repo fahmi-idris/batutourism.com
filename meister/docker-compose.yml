@@ -9,8 +9,8 @@ services:
   app:
     build:
       context: .
-    container_name: "batutourism-verbraucher"
+    container_name: "batutourism-meister"
     environment:
-      MONGO: "mongodb://mongodb:27017/users"
+      MONGO: "mongodb://mongodb:27017/hotels"
     ports:
-      - 3001:3001
+      - 3002:3002
