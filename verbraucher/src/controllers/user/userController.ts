@@ -24,12 +24,12 @@ export class UserController extends Controller {
     }
   }
 
-  async getUser({ headers }: FastifyRequest<any>, response: FastifyReply<ServerResponse>) {
+  async getUser({ params }: FastifyRequest<any>, response: FastifyReply<ServerResponse>) {
     try {
-      const data = await userService.getUser(headers);
+      const data = await userService.getUser(params);
       super.successResponse(response, 'successfully get user data', data);
     } catch (exception) {
-      super.internalServerErrorresponse(response, [exception.message], 500);
+      super.internalServerErrorresponse(response, ['no user found'], 500);
     }
   }
 }

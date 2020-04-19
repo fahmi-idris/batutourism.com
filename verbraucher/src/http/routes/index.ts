@@ -6,5 +6,5 @@ const userController: UserController = new UserController();
 export const router = (server: FastifyInstance<Server, IncomingMessage, ServerResponse>) => {
   server.post('/api/login', userController.login);
   server.post('/api/register', userController.register);
-  server.get('/api/user', userController.getUser);
+  server.get('/api/user/:id', userController.getUser);
 };

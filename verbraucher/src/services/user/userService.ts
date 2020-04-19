@@ -1,3 +1,5 @@
+import { DefaultParams } from 'fastify';
+
 import User from '../../models/user/usersModel';
 import { ILogin, IRegister } from '../../interfaces/user';
 import { encryptPassword, authenticate, jwtSign, jwtVerify } from '../../utils/encryption';
@@ -39,10 +41,8 @@ export class UserService {
     };
   }
 
-  async getUser(data: Partial<any>): Promise<object> {
-    const { authorization } = data;
-    const token: any = jwtVerify(authorization);
-    const user = await User.findOne({ _id: token.id });
+  async getUser({ id }: DefaultParams): Promise<object> {
+    const user = await User.findById({ _id: id });
     return {
       user,
     };

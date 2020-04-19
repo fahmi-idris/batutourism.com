@@ -11,6 +11,6 @@ services:
       context: .
     container_name: "batutourism-meister"
     environment:
-      MONGO: "mongodb://mongodb:27017/hotels"
+      MONGO: "mongodb://mongodb:27017/master"
     ports:
       - 3002:3002
