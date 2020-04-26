@@ -1,0 +1,35 @@
+{
+  "name": "auftrag",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^1.14.6",
+    "mongoose": "^5.9.9",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/cors": "^2.8.6",
+    "@types/dotenv": "^6.1.1",
+    "@types/jsonwebtoken": "^8.3.9",
+    "@types/mongoose": "^5.7.12",
+    "@types/node": "^12.7.3",
+    "bcrypt": "^3.0.8",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^1.19.4",
+    "ts-node": "^7.0.1",
+    "tslib": "^1.11.1",
+    "tslint": "^5.19.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.2"
+  },
+  "scripts": {
+    "start": "nodemon src/server.ts",
+    "docker:up": "docker-compose up --build",
+    "watch": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server.ts"
+  }
+}
