@@ -61,19 +61,4 @@ export class HotelService {
     await res.remove();
     return res;
   }
-
-  async addRoom(data: Partial<IHotel>, { hotelId }: DefaultParams): Promise<object> {
-    const response = await Hotel.findById({ _id: hotelId });
-    const checkRoom = await Room.findOne({ hotelId });
-    if (response.category === 'Villa' && checkRoom) {
-      throw new Error('this is villa, cant add room more than 1');
-    }
-
-    const room = new Room({
-      hotelId,
-      ...data,
-    });
-    await room.save();
-    return room;
-  }
 }

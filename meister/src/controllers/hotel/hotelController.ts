@@ -50,13 +50,4 @@ export class HotelController extends Controller {
       super.internalServerErrorresponse(response, [exception.message], 500);
     }
   }
-
-  async addRoom({ body, params }: FastifyRequest<any>, response: FastifyReply<ServerResponse>) {
-    try {
-      const data = await hotelService.addRoom(body, params);
-      super.successResponse(response, 'successfully add room to hotel', data);
-    } catch (exception) {
-      super.internalServerErrorresponse(response, [exception.message], 500);
-    }
-  }
 }

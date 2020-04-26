@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import { Reserved } from '../../interfaces/room';
 
 export interface RoomType extends mongoose.Document {
   _id: string;
@@ -10,6 +11,7 @@ export interface RoomType extends mongoose.Document {
   roomNumber: number;
   price: number;
   description: string;
+  reserved: Reserved[];
 }
 
 const schema = new mongoose.Schema(
@@ -48,6 +50,16 @@ const schema = new mongoose.Schema(
     description: {
       type: String,
     },
+    reserved: [
+      {
+        from: {
+          type: String,
+        },
+        to: {
+          type: String,
+        },
+      },
+    ],
   },
   {
     timestamps: {
