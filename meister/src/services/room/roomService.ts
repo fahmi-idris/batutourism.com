@@ -41,8 +41,9 @@ export class RoomService {
   }
 
   async availableRoom(data: Reserved): Promise<object> {
-    const { from, to } = data;
+    const { from, to, guest } = data;
     const res = await Room.find({
+      guest: { $lte: guest },
       reserved: {
         $not: {
           $elemMatch: { from: { $lt: to.substring(0, 10) }, to: { $gt: from.substring(0, 10) } },
@@ -53,9 +54,10 @@ export class RoomService {
   }
 
   async availableRoomById(data: Reserved, { roomId }: DefaultParams): Promise<object> {
-    const { from, to } = data;
+    const { from, to, guest } = data;
     const res = await Room.findOne({
       _id: roomId,
+      guest: { $lte: guest },
       reserved: {
         $not: {
           $elemMatch: { from: { $lt: to.substring(0, 10) }, to: { $gt: from.substring(0, 10) } },

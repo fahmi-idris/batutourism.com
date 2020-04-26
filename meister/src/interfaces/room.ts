@@ -1,6 +1,7 @@
 export interface Reserved {
   from: string;
   to: string;
+  guest: number;
 }
 
 export interface IRoom {
