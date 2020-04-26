@@ -1,4 +1,4 @@
-import { DefaultParams } from 'fastify';
+import { DefaultParams, DefaultQuery } from 'fastify';
 import fetch from 'node-fetch';
 
 import Hotel from '../../models/hotel/hotelModels';
@@ -8,6 +8,12 @@ import { IHotel } from '../../interfaces/hotel';
 export class HotelService {
   async getHotels(): Promise<object> {
     const response = await Hotel.find();
+    return response;
+  }
+
+  async searchHotel(query: DefaultQuery): Promise<object> {
+    const { name } = query;
+    const response = await Hotel.find({ name: { $regex: name, $options: 'i' } });
     return response;
   }
 

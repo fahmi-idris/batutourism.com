@@ -15,6 +15,15 @@ export class HotelController extends Controller {
     }
   }
 
+  async searchHotel({ query }: FastifyRequest<any>, response: FastifyReply<ServerResponse>) {
+    try {
+      const data = await hotelService.searchHotel(query);
+      super.successResponse(response, 'successfully get hotels data', data);
+    } catch (exception) {
+      super.internalServerErrorresponse(response, [exception.message], 500);
+    }
+  }
+
   async getHotelsById({ params }: FastifyRequest<any>, response: FastifyReply<ServerResponse>) {
     try {
       const data = await hotelService.getHotelById(params);

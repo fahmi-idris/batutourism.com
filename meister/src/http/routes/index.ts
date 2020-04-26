@@ -8,6 +8,7 @@ const hotelController: HotelController = new HotelController();
 const roomController: RoomController = new RoomController();
 export const router = (server: FastifyInstance<Server, IncomingMessage, ServerResponse>) => {
   server.get('/api/hotels', hotelController.getHotels);
+  server.get('/api/search/hotel', hotelController.searchHotel);
   server.get('/api/hotel/:hotelId', hotelController.getHotelsById);
   server.post('/api/hotel/:userId', hotelController.createHotel);
   server.put('/api/hotel/:hotelId', hotelController.updateHotel);
