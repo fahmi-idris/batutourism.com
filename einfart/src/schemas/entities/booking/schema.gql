@@ -1,0 +1,21 @@
+type Booking {
+  _id: String
+  invoice: String
+  roomId: String
+  total: Int
+  name: String
+  phone: String
+  email: String
+  request: String
+  from: String
+  to: String
+  guest: Int
+}
+
+type Query {
+  booking(id: String!): Booking
+}
+
+type Mutation {
+  booking(roomId: String!, name: String!, phone: String!, email: String!, request: String!, from: String!, to: String!, guest: Int!): Booking!
+}

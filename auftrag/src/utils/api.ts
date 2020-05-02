@@ -1,11 +1,12 @@
 import fetch from 'node-fetch';
 
-export const checkRoom = (roomId: string, from: string, to: string) => {
+export const checkRoom = (roomId: string, from: string, to: string, guest: string) => {
   return fetch(`${process.env.MASTER_SERVICE}/api/room/${roomId}/available`, {
     method: 'post',
     body: JSON.stringify({
       from,
       to,
+      guest,
     }),
     headers: { 'Content-Type': 'application/json' },
   })

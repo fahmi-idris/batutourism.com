@@ -1,6 +1,7 @@
 import { ApolloServer } from 'apollo-server';
 import { config } from 'dotenv';
 
+import { BookingProvider } from './providers/booking/provider';
 import { HotelProvider } from './providers/hotel/provider';
 import { RoomProvider } from './providers/room/provider';
 import { UserProvider } from './providers/user/provider';
@@ -14,6 +15,7 @@ export interface Context {
     hotelProvider: HotelProvider;
     userProvider: UserProvider;
     roomProvider: RoomProvider;
+    bookingProvider: BookingProvider;
   };
 }
 
@@ -23,7 +25,8 @@ const dataSources = (): Context['dataSources'] => {
   return {
     hotelProvider: new HotelProvider(),
     userProvider: new UserProvider(),
-    roomProvider: new RoomProvider()
+    roomProvider: new RoomProvider(),
+    bookingProvider: new BookingProvider()
   };
 };
 

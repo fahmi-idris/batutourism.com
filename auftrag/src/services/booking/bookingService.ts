@@ -13,8 +13,8 @@ export class BookingService {
   }
 
   async book(data: Partial<IBooking>): Promise<object> {
-    const { roomId, from, to } = data;
-    const check = await checkRoom(roomId, from, to);
+    const { roomId, from, to, guest } = data;
+    const check = await checkRoom(roomId, from, to, guest);
     if (!check) {
       throw new Error('date not available');
     }
@@ -26,9 +26,6 @@ export class BookingService {
     });
     await res.save();
     await reserveRoom(roomId, from, to);
-    return {
-      price,
-      data: res,
-    };
+    return res;
   }
 }
