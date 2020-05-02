@@ -6,7 +6,7 @@ export interface RoomType extends mongoose.Document {
   hotelId: string;
   name: string;
   guest: number;
-  bedType: string;
+  bedType: 'DOUBLE' | 'SINGLE';
   size: number;
   roomNumber: number;
   price: number;

@@ -19,7 +19,7 @@ type Room {
   hotelId: String
   name: String
   guest: Int
-  bedType: String
+  bedType: BedType
   size: Int
   roomNumber: Int
   price: Int
@@ -47,6 +47,11 @@ enum Category {
 enum Type {
   PRIVATE
   ROOM
+}
+
+enum BedType {
+  DOUBLE
+  SINGLE
 }
 
 type Query {

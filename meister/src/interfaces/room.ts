@@ -8,7 +8,7 @@ export interface IRoom {
   hotelId: string;
   name: string;
   guest: number;
-  bedType: string;
+  bedType: 'DOUBLE' | 'SINGLE';
   size: number;
   roomNumber: number;
   price: number;

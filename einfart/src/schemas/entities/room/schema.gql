@@ -1,3 +1,8 @@
+enum BedType {
+  DOUBLE
+  SINGLE
+}
+
 type Reserved {
   from: String
   to: String
@@ -8,7 +13,7 @@ type Room {
   hotelId: String
   name: String
   guest: Int
-  bedType: String
+  bedType: BedType
   size: Int
   roomNumber: Int
   price: Int
@@ -23,6 +28,6 @@ type Query {
 }
 
 type Mutation {
-  createRoom(hotelId: String!, name: String!, guest: Int!, bedType: String!, size: Int!, roomNumber: Int!, price: Int!, description: String!): Room!
+  createRoom(hotelId: String!, name: String!, guest: Int!, bedType: BedType!, size: Int!, roomNumber: Int!, price: Int!, description: String!): Room!
   availableRoom(from: String!, to: String!, guest: Int!): [Room]!
 }
