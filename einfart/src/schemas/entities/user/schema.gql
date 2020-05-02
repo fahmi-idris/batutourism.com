@@ -1,0 +1,20 @@
+type Token {
+  token: String
+}
+
+type User {
+  _id: String
+  name: String
+  phone: String
+  email: String
+  numberId: String
+  address: String
+}
+
+type Query {
+  user(id: String!): User!
+}
+
+type Mutation {
+  createUser(name: String!, email: String!, phone: String!, numberId: String!, address: String!, password: String!): Token!
+}

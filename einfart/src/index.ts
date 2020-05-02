@@ -2,6 +2,7 @@ import { ApolloServer } from 'apollo-server';
 import { config } from 'dotenv';
 
 import { HotelProvider } from './providers/hotel/provider';
+import { UserProvider } from './providers/user/provider';
 import resolvers from './schemas/resolvers';
 import typeDefs from './schemas/schemas';
 
@@ -10,6 +11,7 @@ import typeDefs from './schemas/schemas';
 export interface Context {
   dataSources: {
     hotelProvider: HotelProvider;
+    userProvider: UserProvider;
   };
 }
 
@@ -17,7 +19,8 @@ export interface Context {
 // used to retrieve data from the resolvers.
 const dataSources = (): Context['dataSources'] => {
   return {
-    hotelProvider: new HotelProvider()
+    hotelProvider: new HotelProvider(),
+    userProvider: new UserProvider()
   };
 };
 

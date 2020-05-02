@@ -1,6 +1,6 @@
 import { IResolvers } from 'graphql-tools';
 
-const hotelResolver: IResolvers = {
+const schemaResolvers: IResolvers = {
   Query: {
     hotels: (_, __, { dataSources }) => dataSources.hotelProvider.getHotels(),
     hotel: (_, args, { dataSources }) =>
@@ -18,4 +18,4 @@ const hotelResolver: IResolvers = {
   }
 };
 
-export default hotelResolver;
+export default schemaResolvers;

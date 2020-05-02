@@ -1,7 +1,7 @@
-import { mergeResolvers } from 'merge-graphql-schemas';
+import { fileLoader, mergeResolvers } from 'merge-graphql-schemas';
 
-import hotelResolver from './entities/hotel/schema.resolver';
+const schemaResolvers = fileLoader('./src/schemas/entities/**/*.resolver.ts', {
+  recursive: true
+});
 
-const resolvers = [hotelResolver];
-
-export default mergeResolvers(resolvers);
+export default mergeResolvers(schemaResolvers);
