@@ -5,10 +5,10 @@ export interface HotelType extends mongoose.Document {
   userId: string;
   name: string;
   address: string;
-  type: 'Private' | 'Room';
+  type: 'PRIVATE' | 'ROOM';
   district: string;
   guest: number;
-  category: 'Hotel' | 'Villa';
+  category: 'HOTEL' | 'VILLA';
   isActive: boolean;
 }
 

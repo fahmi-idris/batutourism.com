@@ -8,7 +8,7 @@ export class RoomService {
   async addRoom(data: Partial<IRoom>, { hotelId }: DefaultParams): Promise<object> {
     const hotel = await Hotel.findById({ _id: hotelId });
     const checkRoom = await Room.findOne({ hotelId });
-    if (hotel.category === 'Villa' && checkRoom) {
+    if (hotel.category === 'VILLA' && checkRoom) {
       throw new Error('this is villa, cant add room more than 1');
     }
 

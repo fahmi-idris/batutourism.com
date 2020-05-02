@@ -20,10 +20,10 @@ export class HotelService {
   async getHotelById({ hotelId }: DefaultParams): Promise<object> {
     let rooms;
     const hotel = await Hotel.findById({ _id: hotelId });
-    if (hotel.category === 'Hotel') {
+    if (hotel.category === 'HOTEL') {
       rooms = await Room.find({ hotelId: hotel._id });
     }
-    if (hotel.category === 'Villa') {
+    if (hotel.category === 'VILLA') {
       rooms = await Room.findOne({ hotelId: hotel._id });
     }
     return {

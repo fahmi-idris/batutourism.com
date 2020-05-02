@@ -1,13 +1,15 @@
 import { ApolloServer } from 'apollo-server';
+import { config } from 'dotenv';
 
-import { BooksProvider } from './provider';
-import { resolvers, typeDefs } from './resolver';
+import { HotelProvider } from './providers/hotel/provider';
+import resolvers from './schemas/resolvers';
+import typeDefs from './schemas/schemas';
 
 // This is where we define the context type which is used
 // to have correct typing when using context in the resolvers.
 export interface Context {
   dataSources: {
-    booksProvider: BooksProvider;
+    hotelProvider: HotelProvider;
   };
 }
 
@@ -15,7 +17,7 @@ export interface Context {
 // used to retrieve data from the resolvers.
 const dataSources = (): Context['dataSources'] => {
   return {
-    booksProvider: new BooksProvider()
+    hotelProvider: new HotelProvider()
   };
 };
 
@@ -24,9 +26,13 @@ const dataSources = (): Context['dataSources'] => {
 // responsible for fetching the data for those types.
 const server = new ApolloServer({
   typeDefs,
-  // @ts-ignore (FIXME: should be casted to default Resolvers type?)
   resolvers,
   dataSources
+});
+
+// Load env file
+config({
+  path: './.env'
 });
 
 // This `listen` method launches a web-server.  Existing apps

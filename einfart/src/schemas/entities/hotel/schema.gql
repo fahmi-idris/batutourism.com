@@ -1,0 +1,62 @@
+type Hotel {
+  _id: String
+  userId: String
+  name: String
+  address: String
+  type: String
+  district: String
+  guest: Int
+  category: String
+}
+
+type Reserved {
+  from: String
+  to: String
+}
+
+type Room {
+  _id: String
+  hotelId: String
+  name: String
+  guest: Int
+  bedType: String
+  size: Int
+  roomNumber: Int
+  price: Int
+  description: String
+  createdAt: String
+  updatedAt: String
+  reserved: [Reserved]
+}
+
+type HotelRoom {
+  hotel: Hotel
+  rooms: [Room]
+}
+
+type SuccessMessage {
+  message: String
+  success: Boolean
+}
+
+enum Category {
+  HOTEL
+  VILLA
+}
+
+enum Type {
+  PRIVATE
+  ROOM
+}
+
+type Query {
+  hotel(id: String!): HotelRoom
+  hotels: [Hotel]
+  searchHotel(name: String!): [Hotel]
+}
+
+type Mutation {
+  createHotel(userId: String!, name: String!, address: String!, type: Type!, district: String!, guest: Int!, category: Category!): Hotel!
+  updateHotel(hotelId: String!, name: String!, address: String!, type: Type!, district: String!, guest: Int!, category: Category!): Hotel!
+  deleteHotel(hotelId: String!): SuccessMessage
+}

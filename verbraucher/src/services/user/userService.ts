@@ -43,8 +43,6 @@ export class UserService {
 
   async getUser({ id }: DefaultParams): Promise<object> {
     const user = await User.findById({ _id: id });
-    return {
-      user,
-    };
+    return user;
   }
 }

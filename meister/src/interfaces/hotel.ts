@@ -1,9 +1,9 @@
 export interface IHotel {
   name: string;
   address: string;
-  type: 'Private' | 'Room';
+  type: 'PRIVATE' | 'ROOM';
   district: string;
   guest: number;
-  category: 'Hotel' | 'Villa';
+  category: 'HOTEL' | 'VILLA';
   isActive: boolean;
 }
