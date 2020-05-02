@@ -1,16 +1,19 @@
+version: '3'
 
-version: "2"
 services:
   mongodb:
     image: mongo:latest
-    container_name: "mongodb"
+    container_name: "mongodb-autfrag"
     ports:
-        - 27017:27017
+        - 27013:27013
   app:
     build:
       context: .
     container_name: "batutourism-auftrag"
     environment:
-      MONGO: "mongodb://mongodb:27017/users"
+      DB_URI: "mongodb://mongodb:27013/booking"
+      MASTER_SERVICE: "http://localhost:3002"
     ports:
       - 3003:3003
+    depends_on:
+      - mongodb

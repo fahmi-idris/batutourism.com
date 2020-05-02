@@ -1,16 +1,18 @@
+version: '3'
 
-version: "2"
 services:
   mongodb:
     image: mongo:latest
-    container_name: "mongodb"
+    container_name: "mongodb-verbraucher"
     ports:
-        - 27017:27017
+        - 27011:27011
   app:
     build:
       context: .
     container_name: "batutourism-verbraucher"
     environment:
-      MONGO: "mongodb://mongodb:27017/users"
+      DB_URI: "mongodb://mongodb:27011/users"
     ports:
-      - 3001:3001
+      - "3001:3001"
+    depends_on:
+      - mongodb

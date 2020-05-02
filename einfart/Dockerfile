@@ -25,5 +25,5 @@ WORKDIR ${APPDIR}
 COPY --from=build /code .
 
 # Start the server for Next.js using Node.js
-EXPOSE 3001
+EXPOSE 4000
 CMD [ "npm", "start" ]

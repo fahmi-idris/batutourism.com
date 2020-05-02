@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+    container_name: "batutourism-einfart"
+    environment:
+      SERVICE_USER: "http://localhost:3001"
+      SERVICE_MASTER: "http://localhost:3002"
+      SERVICE_BOOKING: "http://localhost:3003"
+    ports:
+      - 4000:4000
