@@ -14,7 +14,7 @@ export const checkRoom = (roomId: string, from: string, to: string) => {
 };
 
 export const reserveRoom = (roomId: string, from: string, to: string) => {
-  return fetch(`${process.env.MASTER_SERVICE}/api/room/${roomId}/reserved`, {
+  return fetch(`${process.env.MASTER_SERVICE}/api/room/${roomId}/book`, {
     method: 'post',
     body: JSON.stringify({
       from,

@@ -16,7 +16,7 @@ export const router = (server: FastifyInstance<Server, IncomingMessage, ServerRe
 
   server.post('/api/hotel/:hotelId/room', roomController.addRoom);
   server.get('/api/room/:roomId', roomController.getRoom);
-  server.post('/api/room/:roomId/reserved', roomController.reservedRoom);
+  server.post('/api/room/:roomId/book', roomController.reservedRoom);
   server.post('/api/room/available', roomController.availableRoom);
   server.post('/api/room/:roomId/available', roomController.availableRoomById);
 };
