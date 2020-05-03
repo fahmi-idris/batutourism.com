@@ -1,18 +1,31 @@
 version: '3'
 
+networks:
+  gateway:
+    external: true
+  cluster-bt:
+    driver: bridge
+
 services:
-  mongodb:
+  mongodb-verbraucher:
     image: mongo:latest
     container_name: "mongodb-verbraucher"
-    ports:
-        - 27011:27011
+    command: mongod --port 27011
+    networks:
+      - gateway
+      - cluster-bt
   app:
     build:
       context: .
     container_name: "batutourism-verbraucher"
     environment:
-      DB_URI: "mongodb://mongodb:27011/users"
+      DB_URI: "mongodb://mongodb-verbraucher:27011/users"
     ports:
       - "3001:3001"
     depends_on:
-      - mongodb
+      - mongodb-verbraucher
+    networks:
+      - gateway
+      - cluster-bt
+    expose:
+      - "3001"
