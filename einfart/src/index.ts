@@ -36,7 +36,9 @@ const dataSources = (): Context['dataSources'] => {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources
+  dataSources,
+  introspection: true,
+  playground: true
 });
 
 // Load env file
