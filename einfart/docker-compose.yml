@@ -1,5 +1,9 @@
 version: '3'
 
+networks:
+  gateway:
+    external: true
+
 services:
   app:
     build:
@@ -10,4 +14,6 @@ services:
       SERVICE_MASTER: "http://localhost:3002"
       SERVICE_BOOKING: "http://localhost:3003"
     ports:
-      - 4000:4000
+      - "4000:4000"
+    networks:
+      - gateway

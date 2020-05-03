@@ -1,19 +1,32 @@
 version: '3'
 
+networks:
+  gateway:
+    external: true
+  cluster-bt:
+    driver: bridge
+
 services:
-  mongodb:
+  mongodb-auftrag:
     image: mongo:latest
-    container_name: "mongodb-autfrag"
-    ports:
-        - 27013:27013
+    container_name: "mongodb-auftrag"
+    command: mongod --port 27013
+    networks:
+      - gateway
+      - cluster-bt
   app:
     build:
       context: .
     container_name: "batutourism-auftrag"
     environment:
-      DB_URI: "mongodb://mongodb:27013/booking"
+      DB_URI: "mongodb://mongodb-auftrag:27013/booking"
       MASTER_SERVICE: "http://localhost:3002"
     ports:
-      - 3003:3003
+      - "3003:3003"
     depends_on:
-      - mongodb
+      - mongodb-auftrag
+    networks:
+      - gateway
+      - cluster-bt
+    expose:
+      - "3003"

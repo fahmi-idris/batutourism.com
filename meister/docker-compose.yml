@@ -1,19 +1,32 @@
 version: '3'
 
+networks:
+  gateway:
+    external: true
+  cluster-bt:
+    driver: bridge
+
 services:
-  mongodb:
+  mongodb-meister:
     image: mongo:latest
     container_name: "mongodb-meister"
-    ports:
-        - 27012:27012
+    command: mongod --port 27012
+    networks:
+      - gateway
+      - cluster-bt
   app:
     build:
       context: .
     container_name: "batutourism-meister"
     environment:
-      DB_URI: "mongodb://mongodb:27012/master"
+      DB_URI: "mongodb://mongodb-meister:27012/master"
       USER_SERVICE: "http://localhost:3001"
     ports:
       - "3002:3002"
     depends_on:
-      - mongodb
+      - mongodb-meister
+    networks:
+      - gateway
+      - cluster-bt
+    expose:
+      - "3002"
